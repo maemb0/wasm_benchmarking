@@ -1,0 +1,17 @@
+# Abhängigkeiten ( "npm install" neu erzeugen)
+node_modules/
+
+# Build-Ausgabe von Vite
+dist/
+
+# Emscripten-SDK
+emsdk/
+
+# Betriebssystem- und Editor-Dateien
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
