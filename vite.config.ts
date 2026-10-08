@@ -1,10 +1,14 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   server: {
+    host: true,
     watch: {
       usePolling: true,
-      interval: 100,
+      interval: 300,
     },
+  },
+  optimizeDeps: {
+    exclude: ['pyodide'],   // ← neu
   },
 });

@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <title>WASM Benchmark</title>
     <style>
-      body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 16px; }
+      body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 40px auto; padding: 0 16px; }
       button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
       button:disabled { opacity: 0.5; cursor: wait; }
-      table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+      table { width: 100%; border-collapse: collapse; margin-top: 12px; }
       th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
       th { background: #f4f4f4; }
       td.num { text-align: right; font-variant-numeric: tabular-nums; }
+      h2 { margin-top: 40px; margin-bottom: 4px; }
+      .hint { color: #666; margin: 0; }
+      .warning { color: #b45309; font-weight: bold; }
     </style>
   </head>
   <body>
@@ -19,18 +22,29 @@
 
     <button id="start">Benchmark starten</button>
 
+    <h2>Kalt – erster Aufruf</h2>
+    <p class="hint">Die allererste Ausführung jeder Funktion nach dem Laden der Seite, ohne Aufwärmen.</p>
+    <p id="cold-note" class="warning"></p>
     <table>
       <thead>
         <tr>
-          <th>Aufgabe</th>
-          <th>Größe</th>
-          <th>Ergebnis</th>
-          <th>JavaScript</th>
-          <th>C (Wasm)</th>
-          <th>AssemblyScript (Wasm)</th>
+          <th>Aufgabe</th><th>Größe</th><th>Ergebnis</th>
+          <th>JavaScript</th><th>C (Wasm)</th><th>AssemblyScript (Wasm)</th><th>Python (Pyodide)</th>
         </tr>
       </thead>
-      <tbody id="results"></tbody>
+      <tbody id="results-cold"></tbody>
+    </table>
+
+    <h2>Warm – Median nach Aufwärmen</h2>
+    <p class="hint">2× Aufwärmen, dann Median aus 5 Messungen (Python: Median aus 3 Messungen, ohne Aufwärmen).</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Aufgabe</th><th>Größe</th><th>Ergebnis</th>
+          <th>JavaScript</th><th>C (Wasm)</th><th>AssemblyScript (Wasm)</th><th>Python (Pyodide)</th>
+        </tr>
+      </thead>
+      <tbody id="results-warm"></tbody>
     </table>
 
     <script type="module" src="/src/main.ts"></script>
