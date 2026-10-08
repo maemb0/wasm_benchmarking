@@ -3,10 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <title>WASM Benchmark</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 16px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: wait;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+      }
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background: #f4f4f4;
+      }
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
   </head>
   <body>
     <h1>WASM Benchmark</h1>
+    <p>Vergleich rechenintensiver Funktionen: JavaScript vs. WebAssembly</p>
+
+    <button id="start">Benchmark starten</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Aufgabe</th>
+          <th>Größe</th>
+          <th>Ergebnis</th>
+          <th>JavaScript (Median)</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+
     <script type="module" src="/src/main.ts"></script>
-    <pre id="output"></pre>
   </body>
 </html>

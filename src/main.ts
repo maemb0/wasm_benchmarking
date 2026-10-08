@@ -1,13 +1,42 @@
-import { sieve } from "./js/algorithms";
+import { sieve, matMul, monteCarloPi } from "./js/algorithms";
+import { measure } from "./bench";
 
-const out = document.getElementById("output");
+const tasks = [
+  {
+    name: "Primzahl-Sieb",
+    size: "n = 10.000.000",
+    run: () => sieve(10_000_000),
+  },
+  { name: "Matrixmultiplikation", size: "300 × 300", run: () => matMul(300) },
+  {
+    name: "Monte-Carlo-π",
+    size: "10.000.000 Punkte",
+    run: () => monteCarloPi(10_000_000, 42),
+  },
+];
 
-if (!out) {
-  throw new Error("Das Ausgabe-Element #output wurde nicht gefunden.");
-}
+const button = document.getElementById("start") as HTMLButtonElement;
+const tbody = document.getElementById("results") as HTMLTableSectionElement;
 
-const t0 = performance.now();
-const result = sieve(10_000_000);
-const t1 = performance.now();
+const nextFrame = () => new Promise((r) => setTimeout(r, 0));
 
-out.textContent = `Primzahlen bis 10.000.000: ${result}\nZeit: ${(t1 - t0).toFixed(1)} ms`;
+button.addEventListener("click", async () => {
+  button.disabled = true;
+  button.textContent = "Läuft …";
+  tbody.innerHTML = "";
+
+  for (const task of tasks) {
+    const row = tbody.insertRow();
+    row.innerHTML = `<td>${task.name}</td><td>${task.size}</td><td>…</td><td class="num">…</td>`;
+    await nextFrame();
+
+    const r = measure(task.run);
+    row.cells[2].textContent = Number.isInteger(r.value)
+      ? r.value.toLocaleString("de-AT")
+      : r.value.toFixed(6);
+    row.cells[3].textContent = `${r.median.toFixed(1)} ms`;
+  }
+
+  button.disabled = false;
+  button.textContent = "Nochmal starten";
+});
