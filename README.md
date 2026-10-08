@@ -30,7 +30,37 @@ Jede Funktion ist in allen Sprachen identisch umgesetzt:
 
 ## Starten
 
-_Folgt._
+### Voraussetzungen
+
+- [Git](https://git-scm.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (muss laufen)
+
+Node.js, Emscripten und AssemblyScript sind bereits im Container enthalten.
+
+### Projekt starten
+
+```bash
+git clone https://github.com/DEIN-USERNAME/wasm-benchmark.git
+cd wasm-benchmark
+docker compose up --build
+```
+
+Dann im Browser **http://localhost:5173** öffnen.
+
+Beenden mit `Strg + C` und anschließend:
+
+```bash
+docker compose down
+```
+
+### Wasm-Dateien neu bauen (optional)
+
+Die kompilierten `.wasm`-Dateien liegen bereits in `public/wasm/`.
+Nur wer den C- oder AssemblyScript-Code ändert, muss neu bauen:
+
+```bash
+docker compose exec app npm run build:wasm
+```
 
 ## Ergebnisse
 
