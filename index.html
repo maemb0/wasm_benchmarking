@@ -4,39 +4,13 @@
     <meta charset="UTF-8" />
     <title>WASM Benchmark</title>
     <style>
-      body {
-        font-family: system-ui, sans-serif;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 0 16px;
-      }
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      button:disabled {
-        opacity: 0.5;
-        cursor: wait;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 24px;
-      }
-      th,
-      td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-      }
-      th {
-        background: #f4f4f4;
-      }
-      td.num {
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-      }
+      body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 16px; }
+      button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+      button:disabled { opacity: 0.5; cursor: wait; }
+      table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+      th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+      th { background: #f4f4f4; }
+      td.num { text-align: right; font-variant-numeric: tabular-nums; }
     </style>
   </head>
   <body>
@@ -47,15 +21,15 @@
 
     <table>
       <thead>
-  <tr>
-    <th>Aufgabe</th>
-    <th>Größe</th>
-    <th>Ergebnis</th>
-    <th>JavaScript</th>
-    <th>C (Wasm)</th>
-    <th>C vs. JS</th>
-  </tr>
-</thead>
+        <tr>
+          <th>Aufgabe</th>
+          <th>Größe</th>
+          <th>Ergebnis</th>
+          <th>JavaScript</th>
+          <th>C (Wasm)</th>
+          <th>AssemblyScript (Wasm)</th>
+        </tr>
+      </thead>
       <tbody id="results"></tbody>
     </table>
 
